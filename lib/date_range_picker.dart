@@ -92,8 +92,9 @@ class _DatePickerHeader extends StatelessWidget {
         yearColor = mode == DatePickerMode.year ? Colors.white : Colors.white70;
         break;
     }
-    final TextStyle dayStyle = TextStyle( color: Colors.white, fontSize: 24.0);
-    final TextStyle yearStyle = TextStyle( color: Colors.white, fontSize: 24.0, fontWeight: FontWeight.bold);
+    final TextStyle dayStyle = TextStyle(color: Colors.white, fontSize: 24.0);
+    final TextStyle yearStyle = TextStyle(
+        color: Colors.white, fontSize: 24.0, fontWeight: FontWeight.bold);
 
     Color? backgroundColor;
     switch (themeData.brightness) {
@@ -492,13 +493,14 @@ class DayPicker extends StatelessWidget {
               color: Color(0xff64B972).withOpacity(0.1),
               shape: BoxShape.rectangle);
         } else if (disabled) {
-          itemStyle = themeData.textTheme.bodyText2?.copyWith(color: themeData.disabledColor);
+          itemStyle = themeData.textTheme.bodyText2
+              ?.copyWith(color: themeData.disabledColor);
         } else if (currentDate.year == year &&
             currentDate.month == month &&
             currentDate.day == day) {
           // The current day gets a different text color.
-          itemStyle =
-              themeData.textTheme.bodyText2?.copyWith(color: themeData.accentColor);
+          itemStyle = themeData.textTheme.bodyText2
+              ?.copyWith(color: themeData.accentColor);
         }
 
         Widget dayWidget = new Container(
@@ -951,7 +953,8 @@ class _YearPickerState extends State<YearPicker> {
             (widget.selectedLastDate != null &&
                 year == widget.selectedLastDate!.year);
         final TextStyle? itemStyle = isSelected
-            ? themeData.textTheme.headline1?.copyWith(color: themeData.accentColor)
+            ? themeData.textTheme.headline1
+                ?.copyWith(color: themeData.accentColor)
             : style;
         return new InkWell(
           key: new ValueKey<int>(year),
@@ -1149,14 +1152,14 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
       data: ButtonBarThemeData(),
       child: new ButtonBar(
         children: <Widget>[
-          new FlatButton(
+          new TextButton(
             child: new Text(
               localizations.cancelButtonLabel,
               style: TextStyle(color: Color(0xff91969A), fontSize: 14),
             ),
             onPressed: _handleCancel,
           ),
-          new FlatButton(
+          new TextButton(
             child: new Text(localizations.okButtonLabel,
                 style: TextStyle(color: Color(0xff64B972), fontSize: 14)),
             onPressed: _handleOk,

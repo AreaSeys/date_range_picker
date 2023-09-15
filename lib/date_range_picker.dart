@@ -81,7 +81,7 @@ class _DatePickerHeader extends StatelessWidget {
     final TextTheme headerTextTheme = themeData.primaryTextTheme;
     Color? dayColor;
     Color? yearColor;
-    switch (themeData.primaryColorBrightness) {
+    switch (themeData.primaryColorLight) {
       case Brightness.light:
         dayColor = mode == DatePickerMode.day ? Colors.black87 : Colors.black54;
         yearColor =
@@ -468,12 +468,12 @@ class DayPicker extends StatelessWidget {
             : null;
         if (isSelectedFirstDay &&
             (isSelectedLastDay == null || isSelectedLastDay)) {
-          itemStyle = themeData.accentTextTheme.bodyText2;
+          itemStyle = themeData.textTheme.bodyText2;
           decoration = new BoxDecoration(
-              color: themeData.accentColor, shape: BoxShape.circle);
+              color: themeData.colorScheme.secondary, shape: BoxShape.circle);
         } else if (isSelectedFirstDay) {
           // The selected day gets a circle background highlight, and a contrasting text color.
-          itemStyle = themeData.accentTextTheme.bodyText2;
+          itemStyle = themeData.textTheme.bodyText2;
           decoration = new BoxDecoration(
               color: Color(0xff64B972),
               borderRadius: BorderRadius.only(
@@ -481,7 +481,7 @@ class DayPicker extends StatelessWidget {
                 bottomLeft: new Radius.circular(50.0),
               ));
         } else if (isSelectedLastDay != null && isSelectedLastDay) {
-          itemStyle = themeData.accentTextTheme.bodyText2;
+          itemStyle = themeData.textTheme.bodyText2;
           decoration = new BoxDecoration(
               color: Color(0xff64B972),
               borderRadius: BorderRadius.only(
@@ -500,7 +500,7 @@ class DayPicker extends StatelessWidget {
             currentDate.day == day) {
           // The current day gets a different text color.
           itemStyle = themeData.textTheme.bodyText2
-              ?.copyWith(color: themeData.accentColor);
+              ?.copyWith(color: themeData.colorScheme.secondary);
         }
 
         Widget dayWidget = new Container(
@@ -954,7 +954,7 @@ class _YearPickerState extends State<YearPicker> {
                 year == widget.selectedLastDate!.year);
         final TextStyle? itemStyle = isSelected
             ? themeData.textTheme.headline1
-                ?.copyWith(color: themeData.accentColor)
+                ?.copyWith(color: themeData.colorScheme.secondary)
             : style;
         return new InkWell(
           key: new ValueKey<int>(year),
@@ -1054,6 +1054,7 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
         break;
       case TargetPlatform.iOS:
         break;
+      default:
     }
   }
 
@@ -1135,6 +1136,7 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
           firstDate: widget.firstDate!,
           lastDate: widget.lastDate!,
         );
+      default:
     }
     return null;
   }
